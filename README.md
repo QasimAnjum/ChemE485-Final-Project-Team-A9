@@ -14,7 +14,7 @@ Q2. Hand-written block flow diagram of the process.
 
 ![](/CumeneReaction1.png)
 
-Secondary Reaction:
+**Secondary Reaction:**
 
 ![](/CumeneReaction2.png)
 
