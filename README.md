@@ -18,4 +18,9 @@ Q2. Hand-written block flow diagram of the process.
 
 4. A suggested thermodynamics package and any extra information that needs to be gathered for the simulation
 
+- Use SRK for the entire process
+- For heat exchangers with multiple zones, it is recommended that you simulate each zone with a separate heat exchanger. Actual equipment may include several zones, so costing should be based on the actual equipment specifications.
+- For the distillation columns, you should use the shortcut method (SHOR) to get estimates for the rigorous distillation simulation (TOWR or SCDS). The shortcut method may be used until an optimum case is near. It is then expected that everyone will obtain a final design using rigorous simulation of the columns.
+
+
 5. An order of magnitude estimate of the design cost.
