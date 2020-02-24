@@ -14,6 +14,8 @@ Q2. Hand-written block flow diagram of the process.
 
 ![](/CumeneReaction1.png)
 
+Secondary Reaction:
+
 ![](/CumeneReaction2.png)
 
 4. A suggested thermodynamics package and any extra information that needs to be gathered for the simulation
