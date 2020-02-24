@@ -23,6 +23,6 @@ Q2. Hand-written block flow diagram of the process.
 - Use SRK for the entire process. We will be dealing with hydrocarbons at high temperatures (to increase reaction kinetics) and high pressures (to decrease volume) . SRK is the equation of state most commonly used with hydrocarbons at high pressures.
 - For heat exchangers with multiple zones, it is recommended that you simulate each zone with a separate heat exchanger. Actual equipment may include several zones, so costing should be based on the actual equipment specifications.
 - For the distillation columns, you should use the shortcut method (SHOR) to get estimates for the rigorous distillation simulation (TOWR or SCDS). The shortcut method may be used until an optimum case is near. It is then expected that everyone will obtain a final design using rigorous simulation of the columns.
-
+- For the reactor, you may use an isothermal reactor to estimate the volume of catalyst and heat exchange area. For more accurate results the temperature profile in the reactor should be modeled by completing a differential heat and material balance on the reactor.
 
 5. An order of magnitude estimate of the design cost.
