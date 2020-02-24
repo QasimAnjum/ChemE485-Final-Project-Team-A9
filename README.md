@@ -26,3 +26,5 @@ Q2. Hand-written block flow diagram of the process.
 - For the reactor, you may use an isothermal reactor to estimate the volume of catalyst and heat exchange area. For more accurate results the temperature profile in the reactor should be modeled by completing a differential heat and material balance on the reactor.
 
 5. An order of magnitude estimate of the design cost.
+
+![](/OrderofMagnitudeEstimate.png)
