@@ -12,6 +12,10 @@ Q2. Hand-written block flow diagram of the process.
 
 3. Initial data regarding the reaction kinetics necessary for simulations
 
+![](/CumeneReaction1.png)
+
+![](/CumeneReaction2.png)
+
 4. A suggested thermodynamics package and any extra information that needs to be gathered for the simulation
 
 5. An order of magnitude estimate of the design cost.
