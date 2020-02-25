@@ -18,6 +18,8 @@ Q2. Hand-written block flow diagram of the process.
 
 ![](/CumeneReaction2.png)
 
+These are the given reaction kinetics for the Cumene production reactions. We plan to simulate the reaction in a level 2 RPlug reactor, because we believe this to be the closest simulation of a packed bed reactor. 
+
 4. A suggested thermodynamics package and any extra information that needs to be gathered for the simulation
 
 - Use SRK for the entire process. We will be dealing with hydrocarbons at high temperatures (to increase reaction kinetics) and high pressures (to decrease volume) . SRK is the equation of state most commonly used with hydrocarbons at high pressures.
