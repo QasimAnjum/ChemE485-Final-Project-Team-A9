@@ -8,7 +8,7 @@ This report provides the general framework, and investigation on a potential cum
 
 Q2. Hand-written block flow diagram of the process.
 
-![](Design.png)
+![](Design.PNG)
 
 3. Initial data regarding the reaction kinetics necessary for simulations
 
