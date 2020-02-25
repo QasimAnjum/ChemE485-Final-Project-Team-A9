@@ -26,11 +26,13 @@ We will adjust as necessary as we progress through our investigation, testing di
 
 4. A suggested thermodynamics package and any extra information that needs to be gathered for the simulation
 
-We will use the SRK thermal package selection for the entire process. The reaction deals with hydrocarbons at high temperatures (to increase reaction kinetics) and high pressures (to decrease volume) . SRK is a cubic equation of state most commonly used with hydrocarbons at high pressures. Aspen's method assisitant also reccomends SRK based off of similar reasons, as well as the absense of petroleum assays and psuedocomponents. 
+We will use the SRK thermal package selection for the entire process. The reaction deals with hydrocarbons at high temperatures (to increase reaction kinetics) and high pressures (to decrease volume) . SRK is a cubic equation of state most commonly used with hydrocarbons at high pressures. Aspen's method assisitant also reccomends SRK based off of similar reasons, as well as the absense of petroleum assays and psuedocomponents. The following bullet points are extra information given from the design project. 
+
 - For heat exchangers with multiple zones, it is recommended that you simulate each zone with a separate heat exchanger. Actual equipment may include several zones, so costing should be based on the actual equipment specifications.
 - For the distillation columns, you should use the shortcut method (SHOR) to get estimates for the rigorous distillation simulation (TOWR or SCDS). The shortcut method may be used until an optimum case is near. It is then expected that everyone will obtain a final design using rigorous simulation of the columns. The assisistant also reccomended using the specific steam table labeled NBS, because of its increase accuracy.  
 - For the reactor, you may use an isothermal reactor to estimate the volume of catalyst and heat exchange area. For more accurate results the temperature profile in the reactor should be modeled by completing a differential heat and material balance on the reactor.
 
 5. An order of magnitude estimate of the design cost.
+Here are are only considering the overall conversion to be 100%. This is reasonable assumption because there is no route in which benzene leaves the system. The secondary reaction also has a tiny reaction conversion associated with it, so when making an order of magnitude estimate, it would be safe to neglect the secondary reaction.
 
 ![](/OrderofMagnitudeEstimate.png)
