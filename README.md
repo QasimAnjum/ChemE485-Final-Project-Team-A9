@@ -22,9 +22,11 @@ These are the given reaction kinetics for the Cumene production reactions. We pl
                             Q = UA*DeltaLogmean
 We will adjust as necessary as we progress through our investigation, testing different conditions that will result in different net heat duties.  
 
+
+
 4. A suggested thermodynamics package and any extra information that needs to be gathered for the simulation
 
-- Use SRK for the entire process. We will be dealing with hydrocarbons at high temperatures (to increase reaction kinetics) and high pressures (to decrease volume) . SRK is the equation of state most commonly used with hydrocarbons at high pressures.
+We will use the SRK thermal package selection for the entire process. The reaction deals with hydrocarbons at high temperatures (to increase reaction kinetics) and high pressures (to decrease volume) . SRK is the equation of state most commonly used with hydrocarbons at high pressures. This Equation of state also deals with Noib
 - For heat exchangers with multiple zones, it is recommended that you simulate each zone with a separate heat exchanger. Actual equipment may include several zones, so costing should be based on the actual equipment specifications.
 - For the distillation columns, you should use the shortcut method (SHOR) to get estimates for the rigorous distillation simulation (TOWR or SCDS). The shortcut method may be used until an optimum case is near. It is then expected that everyone will obtain a final design using rigorous simulation of the columns.
 - For the reactor, you may use an isothermal reactor to estimate the volume of catalyst and heat exchange area. For more accurate results the temperature profile in the reactor should be modeled by completing a differential heat and material balance on the reactor.
