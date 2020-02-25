@@ -8,7 +8,7 @@ This report provides the general framework, and investigation on a potential cum
 
 Q2. Hand-written block flow diagram of the process.
 
-![](Design.PNG)
+![](/BFD.jpeg)
 
 3. Initial data regarding the reaction kinetics necessary for simulations
 
@@ -18,7 +18,9 @@ Q2. Hand-written block flow diagram of the process.
 
 ![](/CumeneReaction2.png)
 
-These are the given reaction kinetics for the Cumene production reactions. We plan to simulate the reaction in a level 2 RPlug reactor, because we believe this to be the closest simulation of a packed bed reactor. 
+These are the given reaction kinetics for the Cumene production reactions. We plan to simulate the reaction in a level 2 RPlug reactor, because we believe this to be the closest simulation of a packed bed reactor. As part of our investigation, we plan to test both co-current and counter-current conditions with the thermal cooling fluid being process water(U = 100 W/m^2K). The overall size of reactor will be calculated based off of an initial heat duty estimate based off of an energy balance of around our reactor. Below is an equation we can use to estimate the initial size of our reactor. 
+                            Q = UA*DeltaLogmean
+We will adjust as necessary as we progress through our investigation, testing different conditions that will result in different net heat duties.  
 
 4. A suggested thermodynamics package and any extra information that needs to be gathered for the simulation
 
