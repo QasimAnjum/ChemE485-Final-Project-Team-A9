@@ -9,7 +9,7 @@ This report provides the general framework and investigation on a potential cume
 
 Q2. Hand-written block flow diagram of the process.
 
-![](/BFD.jpeg)
+![](/Design.PNG)
 
 3. Initial data regarding the reaction kinetics necessary for simulations
 
