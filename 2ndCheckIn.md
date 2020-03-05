@@ -2,7 +2,7 @@
 
 ![](Level1simulationconvergedpurge4percent.png)
 
-**PFD**
+**PFD Visio**
 ![](PFD.PNG)
 
 **Level2**
@@ -11,6 +11,7 @@
 **EQUIPMENT SUMMARY**
 
 HEAT EXCHANGERS
+
 
 E-101 - hps
 
@@ -21,6 +22,7 @@ Temperature: 350 °C
 Pressure: 30.75 bar
 
 U: 600 W/m2°C (desubcooling zone), 1500 W/m2°C (vaporizing)
+
 
 E-102 - cw
 
@@ -35,6 +37,7 @@ Duty: 16,400 MJ/h
 
 PUMPS/COMPRESSORS
 
+
 P-101
 
 Type: centrifugal
@@ -42,6 +45,7 @@ Type: centrifugal
 Pressure increase: 30.5 bar
 
 Driver rating: 21.9 kW
+
 
 C-101
 
@@ -51,6 +55,7 @@ Pressure increase: 30.5 bar
 
 
 REACTORS
+
 
 R-101
 
@@ -73,6 +78,7 @@ Duty: 9840 MJ/h
 
 TOWERS
 
+
 T-101 (distillation tower)
 
 Diameter: 1.13 m
@@ -86,6 +92,7 @@ Number of stages:29
 Orientation: Vertical
 
 Duty: 5390 MJ/h (condenser), 7100 MJ/h (reboiler)
+
 
 T-102 (distillation tower)
 
@@ -104,11 +111,13 @@ Duty: -5490 MJ/h (condenser), 5520 MJ/h (reboiler)
 
 VESSELS
 
+
 V-101 (flash separator)
 
 Height: 5.2 m
 
 Diameter: 1 m
+
 
 V-102 (separator)
 
