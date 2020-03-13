@@ -1,0 +1,1835 @@
+MM "32.0" FLAVOR "NO" VERSION "32.0" DATETIME "Fri Mar 13 16:13:57 2020" 
+MACHINE "WIN-NT/VC"  ; 
+startlibrary
+version1
+NumLibs = 2
+Built-In
+ACM Built-In
+NumCats = 10
+Mixers/Splitters
+active
+Separators
+active
+Exchangers
+active
+Columns
+active
+Reactors
+active
+Pressure Changers
+active
+Manipulators
+active
+Solids
+active
+Solids Separators
+active
+User Models
+active
+endlibrary
+; 
+11
+>VERSION 0
+MIXER2
+Mixer
+Built-In
+MIXER
+>VERSION 0
+R-101
+RPlug
+Built-In
+RPLUG
+>VERSION 0
+VALVE
+Valve
+Built-In
+VALVE
+>VERSION 0
+T-101
+RadFrac
+Built-In
+RADFRAC
+>VERSION 0
+SEPARATE
+Sep
+Built-In
+SEP
+>VERSION 0
+T-102
+RadFrac
+Built-In
+RADFRAC
+>VERSION 0
+FLASHSEP
+Flash2
+Built-In
+FLASH2
+>VERSION 0
+C-101
+Compr
+Built-In
+COMPR
+>VERSION 0
+MIXER1
+Mixer
+Built-In
+MIXER
+>VERSION 0
+P-101
+Pump
+Built-In
+PUMP
+>VERSION 0
+B4
+HeatX
+Built-In
+HEATX
+? SETUP MAIN ? \ "RUN-CLASS" RUN-CLASS = FLOWSHEET \ \ SIMULATE INTERACTIVE
+ = NO MOLEFLOW = MOLEFLOW \ ? SETUP GLOBAL ? \ "IN-UNITS" INSET = METCBAR \ ? 
+SETUP DIAGNOSTICS ? ? SETUP "SIM-OPTIONS" ? ; "METCBAR_MOLE" ; \ "SIM-OPTIONS" 
+\ ? SETUP "MODEL-OPTION" ? ; "METCBAR_MOLE" ; ? SETUP "UNITS-SET" METCBAR ? \ 
+DESCRIPTION DESCRIPTION = "User-defined units set" \ \ MMLOCAL \ \ UNITSET 
+BASESET = MET ( 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 5 3 4 3 3 3 3 3 3 3 3 4 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 5 3 3 3 3 3 3 5 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 ) \ ? 
+DATABANKS ? \ DATABANKS \ ? COMPONENTS MAIN ? \ COMPONENTS CID = CUMENE ANAME
+ = C9H12-2 OUTNAME = CUMENE DBNAME1 = "ISOPROPYLBENZENE" ANAME1 = "C9H12-2" 
+/  CID = "PROPY-01" ANAME = C3H6-2 OUTNAME = "PROPY-01" DBNAME1 = "PROPYLENE" 
+ANAME1 = "C3H6-2" /  CID = BENZENE ANAME = C6H6 OUTNAME = BENZENE DBNAME1 = 
+"BENZENE" ANAME1 = "C6H6" /  CID = PROPANE ANAME = C3H8 OUTNAME = PROPANE 
+DBNAME1 = "PROPANE" ANAME1 = "C3H8" /  CID = "P-DII-01" ANAME = C12H18-D2 
+OUTNAME = "P-DII-01" DBNAME1 = "P-DIISOPROPYLBENZENE" ANAME1 = "C12H18-D2" \ 
+? COMPONENTS "ADA/PCS" "LE-PROP-DATA" ? ; "METCBAR_MOLE" ; ? COMPONENTS 
+"COMP-LIST" GLOBAL ? ? COMPONENTS "UNIFAC-GROUP" ? ? SOLVE ? \ "RUN-MODE" 
+MODE = SIM \ ? "DYN-OPTIONS" ? ? FLOWSHEET GLOBAL ? \ BLOCK BLKID = MIXER2 
+BLKTYPE = MIXER MDLTYPE = "Mixer" IN = ( 3 M0-1 2 M0-1 ) OUT = ( HXIN M0-1 ) 
+\ \ BLOCK BLKID = "R-101" BLKTYPE = RPLUG MDLTYPE = "RPlug" IN = ( REACTIN 
+M0-1 ) OUT = ( REACTOUT M0-1 ) \ \ BLOCK BLKID = VALVE BLKTYPE = VALVE 
+MDLTYPE = "Valve" IN = ( VALVEIN M0-1 ) OUT = ( VALVEOUT M0-1 ) \ \ BLOCK 
+BLKID = "T-101" BLKTYPE = RADFRAC MDLTYPE = "RadFrac" IN = ( DIST1FED M0-1 ) 
+OUT = ( BENRECOV M1-2 DIS2FEED M2-3 ) \ \ BLOCK BLKID = SEPARATE BLKTYPE = 
+SEP MDLTYPE = "Sep" IN = ( BENRECOV M0-1 ) OUT = ( PURGE M0-1 RECYCBEN M0-1 ) 
+\ \ BLOCK BLKID = "T-102" BLKTYPE = RADFRAC MDLTYPE = "RadFrac" IN = ( 
+DIS2FEED M0-1 ) OUT = ( DIPB M2-3 CUMENE M1-2 ) \ \ BLOCK BLKID = FLASHSEP 
+BLKTYPE = FLASH2 MDLTYPE = "Flash2" IN = ( VALVEOUT M0-1 ) OUT = ( DIST1FED 
+M1-2 WASTE M0-1 ) \ \ BLOCK BLKID = "C-101" BLKTYPE = COMPR MDLTYPE = "Compr" 
+IN = ( PROPYLEN M0-1 ) OUT = ( 3 M0-1 ) \ \ BLOCK BLKID = MIXER1 BLKTYPE = 
+MIXER MDLTYPE = "Mixer" IN = ( BENZENE M0-1 RECYCBEN M0-1 ) OUT = ( 1 M0-1 ) 
+\ \ BLOCK BLKID = "P-101" BLKTYPE = PUMP MDLTYPE = "Pump" IN = ( 1 M0-1 ) 
+OUT = ( 2 M0-1 ) \ \ BLOCK BLKID = B4 BLKTYPE = HEATX MDLTYPE = "HeatX" 
+IN = ( HXIN M1-2 REACTOUT M0-1 ) OUT = ( VALVEIN M0-1 REACTIN M1-2 ) \ ? 
+PROPERTIES MAIN ? \ GPROPERTIES GBASEOPSET = SRK GOPSETNAME = SRK GFREE-WATER
+ = STEAMNBS PARCON = -2 \ ? PROPERTIES "OPTION-SETS" SRK ? \ PARAM BASE = SRK 
+\ ? PROPERTIES "OPTION-SETS" STEAMNBS ? \ PARAM BASE = STEAMNBS \ ? 
+PROPERTIES "MOLEC-STRUCT" BENZENE ? ? PROPERTIES "MOLEC-STRUCT" CUMENE ? ? 
+PROPERTIES "MOLEC-STRUCT" "P-DII-01" ? ? PROPERTIES "MOLEC-STRUCT" PROPANE ? 
+? PROPERTIES "MOLEC-STRUCT" "PROPY-01" ? ? PROPERTIES PARAMETERS SUMMARY ? ? 
+PROPERTIES PARAMETERS BINARY SCALAR "MLQKIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST 
+PARAMNAME = MLQKIJ SETNO = 1 UNITROW = 0 \ ? PROPERTIES PARAMETERS BINARY 
+SCALAR "RKTKIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = RKTKIJ SETNO = 1 
+UNITROW = 0 \ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "ANDKIJ-1" ? ; 
+"ENG_MOLE" ; \ PROP-LIST PARAMNAME = ANDKIJ SETNO = 1 UNITROW = 0 TUNITROW = 
+22 TUNITLABEL = F NEL = 2 \ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" 
+"ANDMIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = ANDMIJ SETNO = 1 UNITROW
+ = 0 TUNITROW = 22 TUNITLABEL = F NEL = 2 \ ? PROPERTIES PARAMETERS BINARY 
+"T-DEPENDENT" "MUKIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = MUKIJ SETNO
+ = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL = F NEL = 6 \ ? PROPERTIES 
+PARAMETERS BINARY "T-DEPENDENT" "MULIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST 
+PARAMNAME = MULIJ SETNO = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL = F NEL = 11 
+\ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "SRKKIJ-1" ? ; "METCBAR_MOLE" 
+; \ PROP-LIST PARAMNAME = SRKKIJ SETNO = 1 UNITROW = 0 TUNITROW = 22 
+TUNITLABEL = C BDBANK = ( "SRK-ASPEN" ) NEL = 5 \ \ BPVAL PARAMNAME2 = SRKKIJ 
+CID1 = "PROPY-01" CID2 = PROPANE UNITROW2 = 0 TUNITROW2 = 22 TUNITLABEL2 = C 
+VAL1 = "SRK-ASPEN" VAL2 = "SRK-ASPEN" VAL3 = "SRK-ASPEN" VAL4 = "SRK-ASPEN" 
+VAL5 = "SRK-ASPEN" /  PARAMNAME2 = SRKKIJ CID1 = BENZENE CID2 = PROPANE 
+UNITROW2 = 0 TUNITROW2 = 22 TUNITLABEL2 = C VAL1 = "SRK-ASPEN" VAL2 = 
+"SRK-ASPEN" VAL3 = "SRK-ASPEN" VAL4 = "SRK-ASPEN" VAL5 = "SRK-ASPEN" \ ? 
+PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "SRKLIJ-1" ? ; "METCBAR_MOLE" ; \ 
+PROP-LIST PARAMNAME = SRKLIJ SETNO = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL
+ = C NEL = 8 \ ? PROPERTIES "ATTR-COMPS" ? ? POLYMERS ? ? "ATTR-SCALING" ? ; 
+"METCBAR_MOLE" ; ? "STREAM-CLASS" SUBSTREAMS ? \ DEF-SUBS-CLA SUBSTREAMS = 
+MIXED \ \ DEF-SUBS-CLA SUBSTREAMS = CISOLID \ \ DEF-SUBS-CLA SUBSTREAMS = NC 
+\ \ DEF-SUBS-CLA SUBSTREAMS = NCPSD \ \ DEF-SUBS-CLA SUBSTREAMS = CIPSD \ ? 
+"STREAM-NAMES" ? ? STREAM MATERIAL BENZENE ? ; "METCBAR_MOLE" ; \ SUBSTREAM 
+SSID = MIXED TEMP = 25. <22> <4> PRES = 1. <20> <5> TOTFLOW = 105. <-89> <3> 
+TOTAL = 105. <-89> <0> JUNK = 1 \ \ MOLE-FLOW SSID1 = MIXED CID = BENZENE 
+FLOW = 105. <-89> <3> \ ? STREAM MATERIAL PROPYLEN ? ; "METCBAR_MOLE" ; \ 
+SUBSTREAM SSID = MIXED TEMP = 25. <22> <4> PRES = 1. <20> <5> TOTFLOW = 
+110.27 <-89> <3> TOTAL = 110.27 <-89> <0> JUNK = 2 \ \ MOLE-FLOW SSID1 = 
+MIXED CID = "PROPY-01" FLOW = 105. <-89> <3> /  SSID1 = MIXED CID = PROPANE 
+FLOW = 5.27 <-89> <3> \ ? "STREAM-SUM" ? ? BLOCK MIXER MIXER1 ? ; 
+"METCBAR_MOLE" ; ; TRIANGLE ; \ PARAM PRES = 1. <20> <5> VISITED = 1 \ ? 
+BLOCK MIXER MIXER2 ? ; "METCBAR_MOLE" ; ; TRIANGLE ; \ PARAM PRES = 41. <20> 
+<5> VISITED = 1 \ ? BLOCK SEP SEPARATE ? ; "METCBAR_MOLE" ; ; ICON1 ; \ 
+PARAM1 FLAG = 1 \ \ PARAM PARAM-STREAM = PURGE SUBSTREAM = MIXED COMPS = 
+CUMENE FRACS = 0.01 <0> <0> /  PARAM-STREAM = PURGE SUBSTREAM = MIXED COMPS
+ = "PROPY-01" FRACS = 0.01 <0> <0> /  PARAM-STREAM = PURGE SUBSTREAM = MIXED 
+COMPS = BENZENE FRACS = 0.01 <0> <0> /  PARAM-STREAM = PURGE SUBSTREAM = 
+MIXED COMPS = PROPANE FRACS = 0.01 <0> <0> /  PARAM-STREAM = PURGE SUBSTREAM
+ = MIXED COMPS = "P-DII-01" FRACS = 0.01 <0> <0> /  PARAM-STREAM = RECYCBEN 
+SUBSTREAM = MIXED COMPS = CUMENE /  PARAM-STREAM = RECYCBEN SUBSTREAM = MIXED 
+COMPS = "PROPY-01" /  PARAM-STREAM = RECYCBEN SUBSTREAM = MIXED COMPS = 
+BENZENE /  PARAM-STREAM = RECYCBEN SUBSTREAM = MIXED COMPS = PROPANE /  
+PARAM-STREAM = RECYCBEN SUBSTREAM = MIXED COMPS = "P-DII-01" \ ? BLOCK FLASH2 
+FLASHSEP ? ; "METCBAR_MOLE" ; ; "V-DRUM1" ; \ PARAM TEMP = 90. <22> <4> PRES
+ = 1.75 <20> <5> \ \ FRAC SUBSTREAM = MIXED \ ? BLOCK HEATX B4 ? ; 
+"METCBAR_MOLE" ; ; "SIMP-HT" ; \ PARAM SPEC = "T-COLD" VALUE = 300. <0> <0> 
+SPECUN = C \ \ FEEDS FHOT = REACTOUT FCOLD = HXIN \ \ OUTLETS-HOT HOT-SID = 
+VALVEIN \ \ OUTLETS-COLD COLD-SID = REACTIN \ \ PRODUCTS PHOT = VALVEIN PCOLD
+ = REACTIN \ ? BLOCK RADFRAC "T-101" ? ; "METCBAR_MOLE" ; ; FRACT1 ; \ PARAM 
+NSTAGE = 27 NSTAGEMAX = 28 \ \ "COL-CONFIG" CONDENSER = TOTAL \ \ FEEDS 
+FEED-SID = DIST1FED FEED-STAGE = 15 \ \ PRODUCTS PROD-STREAM = BENRECOV 
+PROD-STAGE = 1 PROD-PHASE = L P-S = N /  PROD-STREAM = DIS2FEED PROD-STAGE = 
+27 PROD-PHASE = L P-S = N \ \ "P-SPEC2" PRES1 = 1.75 <20> <5> \ \ "COL-SPECS" 
+D:F = 0.576 <-1> <0> BASIS-RDV = 0.0 <0> <0> BASIS-RR = 0.3 <-1> <0> \ \ 
+"KLL-VECS" \ \ "TRSZ-VECS" \ \ "PCKSR-VECS" \ ? BLOCK RADFRAC "T-102" ? ; 
+"METCBAR_MOLE" ; ; FRACT1 ; \ PARAM NSTAGE = 15 NSTAGEMAX = 16 \ \ "COL-CONFIG" 
+CONDENSER = TOTAL \ \ FEEDS FEED-SID = DIS2FEED FEED-STAGE = 10 \ \ PRODUCTS 
+PROD-STREAM = DIPB PROD-STAGE = 15 PROD-PHASE = L P-S = N /  PROD-STREAM = 
+CUMENE PROD-STAGE = 1 PROD-PHASE = L P-S = N \ \ "P-SPEC2" PRES1 = 1.75 <20> 
+<5> \ \ "COL-SPECS" D:F = 0.99 <-1> <0> BASIS-RDV = 0.0 <0> <0> BASIS-RR = 
+0.11 <-1> <0> \ \ "KLL-VECS" \ \ "TRSZ-VECS" \ \ "PCKSR-VECS" \ ? BLOCK RPLUG 
+"R-101" ? ; "METCBAR_MOLE" ; ; ICON1 ; \ PARAM TYPE = "T-SPEC" NTUBE = 234 
+LENGTH = 3. <17> <1> DIAM = 12. <17> <4> NPHASE = 2 OPT-TSPEC = "CONST-TEMP" 
+CHK-NTUBE = YES CAT-PRESENT = YES BED-VOIDAGE = 0.5 <0> <0> CAT-RHO = 1.6 <3> 
+<3> OPT-DIA = CONSTANT REACSYS = YES REAC-TEMP = 380. <22> <4> \ \ COOLANT 
+MAXIT = 1000 \ \ PRODUCTS SID = REACTOUT \ \ "BLOCK-OPTION" BLKOPFREWAT = NO 
+\ \ REACTIONS RXN-ID = ( "R-1" ) \ ? BLOCK PUMP "P-101" ? ; "METCBAR_MOLE" ; 
+; ICON1 ; \ PARAM PRES = 41. <20> <5> DELP = 30.5 <75> <5> OPT-SPEC = PRES 
+NPHASE = 2 MAXIT = 2500 \ \ "BLOCK-OPTION" BLKOPFREWAT = NO \ ? BLOCK COMPR 
+"C-101" ? ; "METCBAR_MOLE" ; ; ICON2 ; \ PARAM TYPE = ISENTROPIC OPT-SPEC = 
+PRES PRES = 41. <20> <5> DELP = 30.5 <75> <5> SEFF = 1. <0> <0> \ ? BLOCK 
+VALVE VALVE ? ; "METCBAR_MOLE" ; ; VALVE3 ; \ PARAM P-OUT = 1.75 <20> <5> \ ? 
+"EO-CONV-OPTI" ? \ DMO-PARAMS MODE = DEFAULT \ \ DMO-PARAMS MODE = SIMULATION 
+\ \ DMO-PARAMS MODE = "PARAMETER-ESTIMATION" \ \ DMO-PARAMS MODE = 
+RECONCILIATION \ \ DMO-PARAMS MODE = OPTIMIZATION \ \ LSSQP-PARAMS MODE-L = 
+DEFAULT \ \ LSSQP-PARAMS MODE-L = SIMULATION \ \ LSSQP-PARAMS MODE-L = 
+"PARAMETER-ESTIMATION" \ \ LSSQP-PARAMS MODE-L = RECONCILIATION \ \ 
+LSSQP-PARAMS MODE-L = OPTIMIZATION \ \ NSOLVE-PARAM NSOLVE-MODE = DEFAULT \ \ 
+NSOLVE-PARAM NSOLVE-MODE = SIMULATION \ \ NSOLVE-PARAM NSOLVE-MODE = 
+"PARAMETER-ESTIMATION" \ \ XSLP-PARAMS XSLP-MODE = DEFAULT \ \ XSLP-PARAMS 
+XSLP-MODE = SIMULATION \ \ XSLP-PARAMS XSLP-MODE = "PARAMETER-ESTIMATION" \ \ 
+XSLP-PARAMS XSLP-MODE = RECONCILIATION \ \ XSLP-PARAMS XSLP-MODE = 
+OPTIMIZATION \ ? "CONV-OPTIONS" ? ? TEAR ? ? "CONV-ORDER" ? ? REPORT 
+"BLOCK-REPORT" ? ? REPORT "STREAM-REPOR" ? \ OPTIONS MOLEFLOW = MOLEFLOW \ ? 
+REACTIONS GENERAL "R-1" ? ; "METCBAR_MOLE" ; \ REAC-DATA R-D-REACNO = 1 
+REACNAME = R1 PHASE = V R-D-RBASIS = "CAT-WT" PRE-EXP = 35000. <0> <0> 
+ACT-ENERGY = 24.9 <39> <4> RATE-UNITC = "MOL/GM-S" \ \ REAC-DATA R-D-REACNO
+ = 2 REACNAME = R2 PHASE = V R-D-RBASIS = "CAT-WT" PRE-EXP = 2900000. <0> <0> 
+ACT-ENERGY = 35.08 <39> <4> RATE-UNITC = "MOL/GM-S" \ \ STOIC REACNO = 1 
+STOIC-CID = "PROPY-01" STOIC-SUBS = MIXED COEF = -1. <0> <0> EXPONENT = 1. 
+<0> <0> /  REACNO = 1 STOIC-CID = BENZENE STOIC-SUBS = MIXED COEF = -1. <0> 
+<0> EXPONENT = 1. <0> <0> /  REACNO = 2 STOIC-CID = CUMENE STOIC-SUBS = MIXED 
+COEF = -1. <0> <0> EXPONENT = 1. <0> <0> /  REACNO = 2 STOIC-CID = "PROPY-01" 
+STOIC-SUBS = MIXED COEF = -1. <0> <0> EXPONENT = 1. <0> <0> \ \ STOIC1 
+REACNO1 = 1 STOIC-CID1 = CUMENE STOIC-SUBS1 = MIXED COEF1 = 1. <0> <0> /  
+REACNO1 = 2 STOIC-CID1 = "P-DII-01" STOIC-SUBS1 = MIXED COEF1 = 1. <0> <0> \ 
+\ FORCONTROL FCVAR1 = "P-DII-01" \ ? "STREAM-LIB" ? ; "METCBAR_MOLE" ; ? 
+DISABLE ? \ STREAM LIST = ( BENRECOV CUMENE DIPB DIS2FEED PURGE ) \ 
+
+ GRAPHICS_BACKUP
+PFS V 5.00
+$CONFIG
+paramdata ENRTL-RK
+paramdata VLE-IG
+paramdata VLE-RK
+paramdata VLE-HOC
+paramdata LLE-LIT
+paramdata LLE-ASPEN
+paramdata VLE-LIT
+paramdata BINARY
+paramdata EOS-LIT
+paramdata HENRY
+paramdata SRK-ASPEN
+paramdata PC-SAFT
+paramdata POLYPCSF
+paramdata HYSYS
+purebank PURE32
+purebank AQUEOUS
+purebank SOLIDS
+purebank INORGANIC
+regdbank 1
+ftn_check 1
+autoblockid 1
+autostreamid 1
+showblockid 1
+showstreamid 1
+autoplacement 1
+grid 2
+gridresolution 0.100000
+scale 0
+blockprefix B
+labelscale 1.000000
+3DOn 1
+qwformat %.0f
+tempformat %.0f
+presformat %.0f
+flowformat %.0f
+strmqwformat %.0f
+vflowformat %.0f
+mflowformat %.0f
+vfracformat %.2f
+pseudobatch 0
+partial 1
+animation 1
+runanyway 0
+globalqw 0
+globaltemp 0
+globalpres 0
+globalflow 0
+globalstrmqw 0
+globalvflow 0
+globalmflow 0
+globalvfrac 0
+tooldrawvisible 0
+browserheight 7530
+browserwidth 10725
+browsertreewidth 2450
+polyplusenabled 1
+dynaplusenabled 1
+bfracenabled 1
+rtfenabled 1
+rspenabled 1
+initializeicarus 17
+pinchenabled 0
+linklimit 5000
+material_color 0
+material_style 0
+material_width 1
+heat_color 0
+heat_style 1
+heat_width 1
+heat_termid Q
+work_color 0
+work_style 2
+work_width 1
+work_termid W
+connections_color 9
+connections_style 3
+connections_width 1
+measurements_color 4
+measurements_style 4
+measurements_width 1
+displayeoconn 0
+displaycalcs 0
+displaytransfers 0
+displaymeas 0
+displaydesignspecs 0
+displaycalccons 0
+displaymeascons 0
+displayothercons 0
+displayeomeas 1
+displayeomeastype 2
+displayothermanipconn 0
+showeoviews 0
+eoautosave 1
+lockflowsheet 0
+allow_system_userprops 0
+copy_estimation 1
+copy_retrieved 1
+purge_incomp_params 0
+set_default_biparams 0
+set_default_dataset1 0
+set_default_dataset0 1
+bestinput 0
+autosmrun 0
+genallpropset 0
+strmresformdefault 0
+roottype 1
+exchangerfile 1
+streamformat 1
+runsettingfile 1
+usermodelfile 1
+fortranfile 0
+allow_system_autoparam 1
+timeout 1000
+auto_evaluate 0
+customglobaldatapropset1 0 | Custom1 | * | %.2f | 0 | 6
+customglobaldatapropset2 0 | Custom2 | * | %.2f | 1 | 7
+customglobaldatapropset3 0 | Custom3 | * | %.2f | 2 | 8
+customglobaldatapropset4 0 | Custom4 | * | %.2f | 4 | 9
+customglobaldatapropset5 0 | Custom5 | * | %.2f | 5 | 10
+customglobaldatapropset6 0 | Custom6 | * | %.2f | 6 | 11
+economics_active 0
+ignoreEOVarNameFixupsOnImport 1
+tpsaupgrade 0
+#
+$_APWNSHELL_SETTINGS
+<CommonShellSettings xmlns="http://schemas.aspentech.com/xaml/presentation/visualisation/commonshell" xmlns:atapi="clr-namespace:AspenTech.AspenPlus.Infrastructure;assembly=AspenTech.AspenPlus.Infrastructure" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:atapmaa="clr-namespace:AspenTech.AspenPlus.Modules.ApwnApplication;assembly=ApwnShell" xmlns:atapie="clr-namespace:AspenTech.AspenPlus.Infrastructure.Events;assembly=AspenTech.AspenPlus.Infrastructure" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:apmab="clr-namespace:AspenPlus.Modules.ApwnBrowser;assembly=ApwnShell" xmlns:cxv="http://schemas.aspentech.com/xaml/presentation/cxsviewmodel">
+  <CommonShellSettings.CurrentWorkspace>
+    <ShellWorkspace Layout="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;xamDockManager version=&quot;13.1.20131.2073&quot;&gt;&#xD;&#xA;  &lt;contentPanes&gt;&#xD;&#xA;    &lt;contentPane name=&quot;FlowsheetScreenFactory&quot; location=&quot;Document&quot; lastActivatedTime=&quot;2020-03-13T23:13:39.0098346Z&quot; /&gt;&#xD;&#xA;    &lt;contentPane name=&quot;_AnonymousScreen4&quot; location=&quot;Document&quot; lastActivatedTime=&quot;2020-03-13T23:13:36.6764622Z&quot; /&gt;&#xD;&#xA;    &lt;contentPane name=&quot;_AnonymousScreen1&quot; location=&quot;Document&quot; lastActivatedTime=&quot;2020-03-13T23:06:53.0427616Z&quot; /&gt;&#xD;&#xA;    &lt;contentPane name=&quot;_AnonymousScreen12&quot; location=&quot;Document&quot; lastActivatedTime=&quot;2020-03-13T22:44:58.4919331Z&quot; /&gt;&#xD;&#xA;    &lt;contentPane name=&quot;ModelLibraryScreenFactoryKey&quot; location=&quot;DockedBottom&quot; lastActivatedTime=&quot;2020-03-13T22:37:55.3823362Z&quot; /&gt;&#xD;&#xA;  &lt;/contentPanes&gt;&#xD;&#xA;  &lt;panes&gt;&#xD;&#xA;    &lt;splitPane name=&quot;Zd137c7812e5f488fa14b33b1969f0818&quot; splitterOrientation=&quot;Vertical&quot; location=&quot;DockedBottom&quot;&gt;&#xD;&#xA;      &lt;contentPane name=&quot;ModelLibraryScreenFactoryKey&quot; /&gt;&#xD;&#xA;    &lt;/splitPane&gt;&#xD;&#xA;  &lt;/panes&gt;&#xD;&#xA;  &lt;documents splitterOrientation=&quot;Vertical&quot;&gt;&#xD;&#xA;    &lt;splitPane name=&quot;Z7c80b87dba0c4356a152419ae87eed66&quot; splitterOrientation=&quot;Vertical&quot;&gt;&#xD;&#xA;      &lt;tabGroup name=&quot;Z1030bbd07cf548d3a4654d579e74fbc5&quot; selectedIndex=&quot;1&quot;&gt;&#xD;&#xA;        &lt;contentPane name=&quot;_AnonymousScreen4&quot; /&gt;&#xD;&#xA;        &lt;contentPane name=&quot;FlowsheetScreenFactory&quot; /&gt;&#xD;&#xA;        &lt;contentPane name=&quot;_AnonymousScreen12&quot; /&gt;&#xD;&#xA;        &lt;contentPane name=&quot;_AnonymousScreen1&quot; /&gt;&#xD;&#xA;      &lt;/tabGroup&gt;&#xD;&#xA;    &lt;/splitPane&gt;&#xD;&#xA;  &lt;/documents&gt;&#xD;&#xA;&lt;/xamDockManager&gt;" NavigationGroupToSelect="Simulation" IsNavigationPaneMinimized="False" IsRibbonMinimized="False">
+      <ShellWorkspace.Screens>
+        <WorkspaceScreenData PaneName="FlowsheetScreenFactory" ScreenFactoryKey="FlowsheetScreenFactory">
+          <WorkspaceScreenData.ScreenSubject>
+            <atapi:StringScreenSubject subject="{assembly:Null}" fatherNodePath="{assembly:Null}" NavigationGroupKey="Simulation" />
+          </WorkspaceScreenData.ScreenSubject>
+          <WorkspaceScreenData.ScreenState>
+            <ScreenState Zoom="1.1900009999999999" />
+          </WorkspaceScreenData.ScreenState>
+        </WorkspaceScreenData>
+        <WorkspaceScreenData PaneName="_AnonymousScreen4" ScreenFactoryKey="ApwnFormContentFactory">
+          <WorkspaceScreenData.ScreenSubject>
+            <atapmaa:ApwnFormScreenSubject Key="Blocks.MIXER2" NavigationGroupKey="Simulation">
+              <atapmaa:ApwnFormScreenSubject.ShowFormArgs>
+                <atapie:ShowFormEventArgs FormProgId="MMMIXER.MMMIXER_INPUT" FormKey="Blocks.MIXER2" Header="MIXER2 (Mixer)" ResultsOnly="False" PathKey="Top.appModelV8.Blocks.MIXER2">
+                  <atapie:ShowFormEventArgs.Parameters>
+                    <s:String assembly:Key="id">MIXER2</s:String>
+                    <s:String assembly:Key="main">Top.appModelV8.Blocks.MIXER2</s:String>
+                  </atapie:ShowFormEventArgs.Parameters>
+                </atapie:ShowFormEventArgs>
+              </atapmaa:ApwnFormScreenSubject.ShowFormArgs>
+              <atapmaa:ApwnFormScreenSubject.PlotwizardRule>
+                <apmab:ApwnPlotwizardRule IsHierarchy="True" ContextPath="Top.appModelV8.Blocks.MIXER2">
+                  <apmab:ApwnPlotwizardRule.ProgId>
+                    <s:String>WpfPLSOLID.RibbonPlotWizardMgr</s:String>
+                  </apmab:ApwnPlotwizardRule.ProgId>
+                </apmab:ApwnPlotwizardRule>
+              </atapmaa:ApwnFormScreenSubject.PlotwizardRule>
+            </atapmaa:ApwnFormScreenSubject>
+          </WorkspaceScreenData.ScreenSubject>
+          <WorkspaceScreenData.ScreenState>
+            <atapmaa:ApwnFormScreenState>
+              <atapmaa:ApwnFormScreenState.Parameters>
+                <cxv:CxvParameter Name="main" Value="Top.appModelV8.Blocks.MIXER2" />
+                <cxv:CxvParameter Name="id" Value="MIXER2" />
+                <cxv:CxvParameter Name="extraComments_path" Value="Comments" />
+                <cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" />
+                <cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" />
+                <cxv:CxvParameter Name="selected_tab" Value="tab0" />
+              </atapmaa:ApwnFormScreenState.Parameters>
+            </atapmaa:ApwnFormScreenState>
+          </WorkspaceScreenData.ScreenState>
+        </WorkspaceScreenData>
+        <WorkspaceScreenData PaneName="_AnonymousScreen1" ScreenFactoryKey="ApwnFormContentFactory">
+          <WorkspaceScreenData.ScreenSubject>
+            <atapmaa:ApwnFormScreenSubject Key="Blocks.P-101" NavigationGroupKey="Simulation">
+              <atapmaa:ApwnFormScreenSubject.ShowFormArgs>
+                <atapie:ShowFormEventArgs FormProgId="MMPUMP.MMPUMP_SETUP" FormKey="Blocks.P-101" Header="P-101 (Pump)" ResultsOnly="False" PathKey="Top.appModelV8.Blocks.P-101">
+                  <atapie:ShowFormEventArgs.Parameters>
+                    <s:String assembly:Key="id">P-101</s:String>
+                    <s:String assembly:Key="main">Top.appModelV8.Blocks.P-101</s:String>
+                  </atapie:ShowFormEventArgs.Parameters>
+                </atapie:ShowFormEventArgs>
+              </atapmaa:ApwnFormScreenSubject.ShowFormArgs>
+              <atapmaa:ApwnFormScreenSubject.PlotwizardRule>
+                <apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Blocks.P-101" />
+              </atapmaa:ApwnFormScreenSubject.PlotwizardRule>
+            </atapmaa:ApwnFormScreenSubject>
+          </WorkspaceScreenData.ScreenSubject>
+          <WorkspaceScreenData.ScreenState>
+            <atapmaa:ApwnFormScreenState>
+              <atapmaa:ApwnFormScreenState.Parameters>
+                <cxv:CxvParameter Name="main" Value="Top.appModelV8.Blocks.P-101" />
+                <cxv:CxvParameter Name="id" Value="P-101" />
+                <cxv:CxvParameter Name="extraComments_path" Value="Comments" />
+                <cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" />
+                <cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" />
+                <cxv:CxvParameter Name="selected_tab" Value="tab0" />
+              </atapmaa:ApwnFormScreenState.Parameters>
+            </atapmaa:ApwnFormScreenState>
+          </WorkspaceScreenData.ScreenState>
+        </WorkspaceScreenData>
+        <WorkspaceScreenData PaneName="_AnonymousScreen12" ScreenFactoryKey="ApwnFormContentFactory">
+          <WorkspaceScreenData.ScreenSubject>
+            <atapmaa:ApwnFormScreenSubject Key="Streams.2.Results" NavigationGroupKey="Simulation">
+              <atapmaa:ApwnFormScreenSubject.ShowFormArgs>
+                <atapie:ShowFormEventArgs FormProgId="MMMATERIAL.MMMATERIAL_RESULT" FormKey="Streams.2.Results" Header="2 (MATERIAL) - Results" ResultsOnly="True" PathKey="Top.appModelV8.Streams.2">
+                  <atapie:ShowFormEventArgs.Parameters>
+                    <s:String assembly:Key="id">2</s:String>
+                    <s:Int32 assembly:Key="IsStream">1</s:Int32>
+                    <s:String assembly:Key="main">Top.appModelV8.Streams.2</s:String>
+                  </atapie:ShowFormEventArgs.Parameters>
+                </atapie:ShowFormEventArgs>
+              </atapmaa:ApwnFormScreenSubject.ShowFormArgs>
+              <atapmaa:ApwnFormScreenSubject.PlotwizardRule>
+                <apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Streams.2">
+                  <apmab:ApwnPlotwizardRule.ProgId>
+                    <s:String>WpfPLDISCURVES.RibbonPlotWizardMgr</s:String>
+                  </apmab:ApwnPlotwizardRule.ProgId>
+                </apmab:ApwnPlotwizardRule>
+              </atapmaa:ApwnFormScreenSubject.PlotwizardRule>
+            </atapmaa:ApwnFormScreenSubject>
+          </WorkspaceScreenData.ScreenSubject>
+          <WorkspaceScreenData.ScreenState>
+            <atapmaa:ApwnFormScreenState>
+              <atapmaa:ApwnFormScreenState.Parameters>
+                <cxv:CxvParameter Name="IsStream">
+                  <cxv:CxvParameter.Value>
+                    <s:Int32>1</s:Int32>
+                  </cxv:CxvParameter.Value>
+                </cxv:CxvParameter>
+                <cxv:CxvParameter Name="main" Value="Top.appModelV8.Streams.2" />
+                <cxv:CxvParameter Name="id" Value="2" />
+                <cxv:CxvParameter Name="main_result" Value="@main.@parent.@parent" />
+                <cxv:CxvParameter Name="extraComments_path" Value="Comments" />
+                <cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" />
+                <cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" />
+                <cxv:CxvParameter Name="selected_tab" Value="tab0" />
+              </atapmaa:ApwnFormScreenState.Parameters>
+            </atapmaa:ApwnFormScreenState>
+          </WorkspaceScreenData.ScreenState>
+        </WorkspaceScreenData>
+        <WorkspaceScreenData PaneName="ModelLibraryScreenFactoryKey" ScreenFactoryKey="ModelLibraryScreenFactoryKey">
+          <WorkspaceScreenData.ScreenState>
+            <ScreenState />
+          </WorkspaceScreenData.ScreenState>
+        </WorkspaceScreenData>
+      </ShellWorkspace.Screens>
+    </ShellWorkspace>
+  </CommonShellSettings.CurrentWorkspace>
+  <CommonShellSettings.SavedWorkspaces>
+    <ShellWorkspaceFolder />
+  </CommonShellSettings.SavedWorkspaces>
+</CommonShellSettings>00 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+RO‰›U–nýie:ShowFormEventArgs.Parameters>
+                    <s:String assembly:Key="id">2</s:String>
+                    <s:Int32 assembly:Key="IsStream">1</s:Int32>
+                    <s:String assembly:Key="main">Top.appModelV8.Streams.2</s:String>
+                  </atapie:ShowFormEventArgs.Parameters>
+                </atapie:ShowFormEventArgs>
+              </atapmaa:ApwnFormScreenSubject.ShowFormArgs>
+              <atapmaa:ApwnFormScreenSubject.PlotwizardRule>
+                <apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Streams.2">
+                  <apmab:ApwnPlotwizardRule.ProgId>
+                    <s:String>WpfPLDISCURVES.RibbonPlotWizardMgr</s:String>
+                  </apmab:ApwnPlotwizardRule.ProgId>
+                </apmab:ApwnPlotwizardRule>
+              </atapmaa:ApwnFormScreenSubject.PlotwizardRule>
+            </atapmaa:ApwnFormScreenSubject>
+          </WorkspaceScreenData.ScreenSubject>
+          <WorkspaceScreenData.ScreenState>
+            <atapmaa:ApwnFormScreenState>
+              <atapmaa:ApwnFormScreenState.Parameters>
+                <cxv:CxvParameter Name="IsStream">
+                  <cxv:CxvParameter.Value>
+                    <s:Int32>1</s:Int32>
+                  </cxv:CxvParameter.Value>
+                </cxv:CxvParameter>
+                <cxv:CxvParameter Name="main" Value="Top.appModelV8.Streams.2" />
+                <cxv:CxvParameter Name="id" Value="2" />
+                <cxv:CxvParameter Name="main_result" Value="@main.@parent.@parent" />
+                <cxv:CxvParameter Name="extraComments_path" Value="Comments" />
+                <cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" />
+                <cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" />
+                <cxv:CxvParameter Name="selected_tab" Value="tab0" />
+              </atapmaa:ApwnFormScreenState.Parameters>
+            </atapmaa:ApwnFormScreenState>
+          </WorkspaceScreenData.ScreenState>
+        </WorkspaceScreenData>
+        <WorkspaceScreenData PaneName="ModelLibraryScreenFactoryKey" ScreenFactoryKey="ModelLibraryScreenFactoryKey">
+          <WorkspaceScreenData.ScreenState>
+            <ScreenState />
+          </WorkspaceScreenData.ScreenState>
+        </WorkspaceScreenData>
+      </ShellWorkspace.Screens>
+    </ShellWorkspace>
+  </CommonShellSettings.CurrentWorkspace>
+  <CommonShellSettings.SavedWorkspaces>
+    <ShellWorkspaceFolder />
+  </CommonShellSettings.SavedWorkspaces>
+</CommonShellSettings>tings.SavedWorkspaces>
+</CommonShellSettings>Blocks.P-101" />
+              </atapmaa:ApwnFormScreenSubject.PlotwizardRule>
+            </atapmaa:ApwnFormScreenSubject>
+          </WorkspaceScreenData.ScreenSubject>
+          <WorkspaceScreenData.ScreenState>
+            <atapmaa:ApwnFormScreenState>
+              <atapmaa:ApwnFormScreenState.Parameters>
+                <cxv:CxvParameter Name="main" Value="Top.appModelV8.Blocks.P-101" />
+                <cxv:CxvParameter Name="id" Value="P-101" />
+                <cxv:CxvParameter Name="extraComments_path" Value="Comments" />
+                <cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" />
+                <cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" />
+                <cxv:CxvParameter Name="selected_tab" Value="tab0" />
+              </atapmaa:ApwnFormScreenState.Parameters>
+            </atapmaa:ApwnFormScreenState>
+          </WorkspaceScreenData.ScreenState>
+        </WorkspaceScreenData>
+        <WorkspaceScreenData PaneName="_AnonymousScreen12" ScreenFactoryKey="ApwnFormContentFactory">
+          <WorkspaceScreenData.ScreenSubject>
+            <atapmaa:ApwnFormScreenSubject Key="Streams.2.Results" NavigationGroupKey="Simulation">
+              <atapmaa:ApwnFormScreenSubject.ShowFormArgs>
+                <atapie:ShowFormEventArgs FormProgId="MMMATERIAL.MMMATERIAL_RESULT" FormKey="Streams.2.Results" Header="2 (MATERIAL) - Results" ResultsOnly="True" PathKey="Top.appModelV8.Streams.2">
+                  <atapPathKey="Top.appModelV8.Streams.2">
+$_END_APWNSHELL_SETTINGS
+#
+$_GRID_TEMPLATES
+$_START_TEMPLATE_Model
+<?xml version="1.0" encoding="utf-8"?>
+<TabbedSummaryGridTemplateCol>
+  <TabbedSummaryGridTemplates />
+</TabbedSummaryGridTemplateCol>
+$_END_TEMPLATE_Model
+$_END_GRID_TEMPLATES
+PFSVData
+# of PFS Objects = 31
+SIZE -13.6 19.2198 -13.0119 2.19888
+BLOCK
+ID: MIXER2
+Version: 1
+ICON: "TRIANGLE"
+Flag 0
+Section GLOBAL
+At 1.200629 1.201267
+Label At -0.000628 -1.001267
+Scale 1.000000 Modifier 0
+BLOCK
+ID: R-101
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 8.100000 1.300000
+Label At -0.000618 -0.697748
+Annotation At -0.525000 -0.625000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: VALVE
+Version: 1
+ICON: "VALVE3"
+Flag 0
+Section GLOBAL
+At 9.904305 0.803559
+Label At -0.004304 -0.403559
+Annotation At -0.100000 -0.162500
+Scale 1.000000 Modifier 0
+BLOCK
+ID: T-101
+Version: 1
+ICON: "FRACT1"
+Flag 0
+Section GLOBAL
+At 14.600000 -1.000000
+Label At 0.003289 0.001434
+Annotation At -0.225000 -1.100000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: SEPARATE
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 16.803001 1.598975
+Label At 0.096998 -0.598975
+Annotation At -0.250000 -0.500000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: T-102
+Version: 1
+ICON: "FRACT1"
+Flag 0
+Section GLOBAL
+At 16.900000 -2.200000
+Label At 0.005148 -0.001059
+Annotation At -0.225000 -1.100000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: FLASHSEP
+Version: 1
+ICON: "V-DRUM1"
+Flag 0
+Section GLOBAL
+At 12.703554 0.206998
+Label At 0.096446 1.093002
+Scale 1.000000 Modifier 0
+BLOCK
+ID: C-101
+Version: 1
+ICON: "ICON2"
+Flag 0
+Section GLOBAL
+At -3.000000 -0.200000
+Label At -0.201604 -0.496944
+Scale 1.000000 Modifier 0
+BLOCK
+ID: MIXER1
+Version: 1
+ICON: "TRIANGLE"
+Flag 0
+Section GLOBAL
+At -4.000000 1.600000
+Label At -0.198204 -0.597748
+Scale 1.000000 Modifier 0
+BLOCK
+ID: P-101
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At -3.005893 1.598975
+Label At 0.205894 -0.598975
+Annotation At -0.287500 -0.450000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: B4
+Version: 1
+ICON: "SIMP-HT"
+Flag 0
+Section GLOBAL
+At 4.900000 0.700000
+Label At 0.325000 0.237000
+Scale 1.000000 Modifier 1
+STREAM
+ID: BENZENE
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 1
+At -7.701901 1.507196
+Label At 2.241233 0.000142
+ROUTE 0 0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r -7.701901 1.507196 0
+x x -6.020613 1.507196 0
+y y -6.020613 1.498880 0
+x x -4.550306 1.498880 0
+t l -4.350306 1.498880 0
+$ C 2.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: PROPYLEN
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 1
+At -7.686605 0.711781
+Label At 2.190067 0.000000
+ROUTE 0 0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r -7.686605 0.711781 0
+x x -3.312526 0.711781 0
+y y -3.312526 0.288091 0
+t u -3.312526 0.088091 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: HXIN
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 1.937605 1.298880
+Label At 1.362967 0.000000
+ROUTE 0 0
+r r 1.937605 1.298880 0
+x x 1.700934 1.298880 0
+y 0 1.700934 1.200146 0
+t r 1.500934 1.200146 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 1.937605 1.298880 0
+x x 4.900210 1.298880 0
+y y 4.900210 1.125145 0
+t u 4.900210 0.925145 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: REACTIN
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 6.000105 -0.375000
+Label At 0.100000 0.000000
+ROUTE 0 0
+r r 6.000105 -0.375000 0
+x y 4.900210 -0.375000 0
+y 0 4.900210 0.276395 0
+t d 4.900210 0.476395 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 6.000105 -0.375000 0
+x x 7.300000 -0.375000 0
+y x 7.300000 0.925000 0
+x x 7.375000 0.925000 0
+t l 7.575000 0.925000 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: REACTOUT
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 7.181538 0.298777
+Label At -0.981914 0.000000
+ROUTE 0 0
+r r 7.181538 0.298777 0
+x y 8.894739 0.298777 0
+y 0 8.894739 1.675000 0
+x 0 8.825000 1.675000 0
+t r 8.625000 1.675000 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 7.181538 0.298777 0
+x x 5.325108 0.298777 0
+y x 5.325108 0.700247 0
+t r 5.125108 0.700247 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: VALVEOUT
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 10.776202 0.451741
+Label At 0.788888 -0.245633
+ROUTE 0 0
+r r 10.776202 0.451741 0
+y x 10.776202 0.804260 0
+x x 10.104354 0.804260 0
+t r 10.004354 0.804260 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 10.776202 0.451741 0
+y y 10.776202 0.206108 0
+x x 12.353979 0.206108 0
+t l 12.453979 0.206108 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: BENRECOV
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 15.303949 0.772967
+Label At 0.199106 0.825112
+ROUTE 0 0
+r r 15.303949 0.772967 0
+y 0 15.303949 -0.473846 0
+x x 15.147886 -0.473846 0
+t r 15.047886 -0.473846 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 15.303949 0.772967 0
+y x 15.303949 1.598078 0
+x x 16.452639 1.598078 0
+t l 16.552641 1.598078 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: DIS2FEED
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 0
+At 15.533396 -1.827429
+Label At 0.141651 -0.077619
+ROUTE 0 0
+r r 15.533396 -1.827429 0
+x x 15.391745 -1.827429 0
+y 0 15.391745 -1.826154 0
+x x 15.245578 -1.826154 0
+t r 15.195578 -1.826154 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 15.533396 -1.827429 0
+x x 15.675047 -1.827429 0
+y y 15.675047 -2.200000 0
+x x 16.624039 -2.200000 0
+t l 16.674038 -2.200000 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: CUMENE
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 2
+At 18.913910 -1.506204
+Label At -0.642450 0.000000
+ROUTE 0 0
+r l 18.913910 -1.506204 0
+x y 17.873753 -1.506204 0
+y x 17.873753 -1.673846 0
+x 0 17.547886 -1.673846 0
+t r 17.347885 -1.673846 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: DIPB
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 2
+At 19.219839 -3.433556
+Label At -0.458895 0.000000
+ROUTE 0 0
+r l 19.219839 -3.433556 0
+x y 18.302052 -3.433556 0
+y x 18.302052 -3.204109 0
+x 0 17.695578 -3.204109 0
+y y 17.695578 -3.026153 0
+t r 17.495577 -3.026153 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: PURGE
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 2
+At 19.097467 1.706050
+Label At -0.997276 -0.198854
+ROUTE 0 0
+r l 19.097467 1.706050 0
+x y 18.699760 1.706050 0
+y x 18.699760 1.507196 0
+x x 17.254644 1.507196 0
+y 0 17.254644 1.598078 0
+t r 17.054644 1.598078 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: RECYCBEN
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 6.387500 2.198879
+Label At 0.000000 0.000000
+ROUTE 0 0
+r r 6.387500 2.198879 0
+x y 17.350000 2.198879 0
+y 0 17.350000 1.498079 0
+x 0 17.304646 1.498079 0
+t r 17.104645 1.498079 0
+$ C 2.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 6.387500 2.198879 0
+x x -4.575000 2.198879 0
+y x -4.575000 1.598880 0
+x x -4.500306 1.598880 0
+t l -4.300306 1.598880 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: DIST1FED
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 13.449867 -1.000000
+Label At 0.038795 0.000000
+ROUTE 0 0
+r r 13.449867 -1.000000 0
+x y 12.703288 -1.000000 0
+y 0 12.703288 -0.291005 0
+t d 12.703288 -0.191005 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 13.449867 -1.000000 0
+x x 14.274038 -1.000000 0
+t l 14.374039 -1.000000 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: WASTE
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 2
+At 17.200621 0.798490
+Label At -2.373976 0.096848
+ROUTE 0 0
+r l 17.200621 0.798490 0
+x y 16.950001 0.798490 0
+y x 16.950001 0.895338 0
+x y 12.703288 0.895338 0
+y 0 12.703288 0.806782 0
+t u 12.703288 0.606782 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: VALVEIN
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 6.783831 1.797828
+Label At 0.000000 0.000000
+ROUTE 0 0
+r r 6.783831 1.797828 0
+x y 4.122249 1.797828 0
+y 0 4.122249 0.700247 0
+x 0 4.474266 0.700247 0
+t l 4.674266 0.700247 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 6.783831 1.797828 0
+x x 9.445412 1.797828 0
+y x 9.445412 0.803159 0
+x x 9.604155 0.803159 0
+t l 9.804154 0.803159 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: 3
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At -1.996328 -0.053041
+Label At 1.373325 0.749526
+ROUTE 0 0
+r r -1.996328 -0.053041 0
+y x -1.996328 -0.487547 0
+x y -2.687405 -0.487547 0
+y y -2.687405 -0.464963 0
+t d -2.687405 -0.364963 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r -1.996328 -0.053041 0
+y x -1.996328 0.696484 0
+x x 0.750322 0.696484 0
+y x 0.750322 1.100146 0
+t l 0.850322 1.100146 0
+$ C 2.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: 1
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At -3.388304 1.614271
+Label At -0.071500 0.000000
+ROUTE 0 0
+r r -3.388304 1.614271 0
+x 0 -3.600338 1.614271 0
+y r -3.600338 1.598880 0
+x x -3.649694 1.598880 0
+t r -3.699694 1.598880 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r -3.388304 1.614271 0
+x x -3.319271 1.614271 0
+y x -3.319271 1.598489 0
+x x -3.305411 1.598489 0
+t l -3.255411 1.598489 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: 2
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At -2.175000 1.561809
+Label At 1.437661 -0.361663
+ROUTE 0 0
+r r -2.175000 1.561809 0
+y x -2.175000 1.823714 0
+x 0 -2.430297 1.823714 0
+t r -2.630297 1.823714 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r -2.175000 1.561809 0
+y y -2.175000 1.200146 0
+x x 0.700322 1.200146 0
+t l 0.900322 1.200146 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+LEGEND
+Version: 2
+Dim: -5.05242 -2.90504 -3.83693 -3.14512
+Size: 0.0152497
+Font: 1 0 =
+TABLE
+Version: 3
+CanUpdate: 1
+Dim: -13.6 -2.2 11.5809 -13.0119
+Size: 1 0.0152497
+Font: 1.03496 0 =Tahoma
+Tag
+Tag
+24 16
+5 0
+5
+1
+3
+2
+4
+0
+0
+0
+0
+0
+Stream ID
+To
+From
+Phase
+Stream ID
+To
+From
+Phase
+Heat and Material Balance Table
+
+FULL
+METCBAR
+CUMENE
+REACTOUT
+3
+BENRECOV
+BENZENE
+CUMENE
+DIPB
+DIS2FEED
+DIST1FED
+HXIN
+PROPYLEN
+PURGE
+REACTOUT
+RECYCBEN
+VALVEOUT
+WASTE
+
+VALVE
+MIXER2
+SEPARATE
+MIXER1
+
+
+T-102
+T-101
+E-101
+C-101
+
+VALVE
+MIXER1
+E-102
+
+T-102
+R-101
+C-101
+T-101
+
+T-102
+T-102
+T-101
+FLASHSEP
+MIXER2
+
+SEPARATE
+R-101
+SEPARATE
+VALVE
+FLASHSEP
+LIQUID
+VAPOR
+VAPOR
+LIQUID
+LIQUID
+LIQUID
+LIQUID
+LIQUID
+LIQUID
+LIQUID
+VAPOR
+LIQUID
+VAPOR
+LIQUID
+VAPOR
+VAPOR
+Substream: MIXED
+Mole Flow
+  CUMENE
+  PROPY-01
+  BENZENE
+  PROPANE
+  P-DII-01
+Total Flow
+Total Flow
+Total Flow
+Temperature
+Pressure
+Vapor Frac
+Liquid Frac
+Solid Frac
+Enthalpy
+Enthalpy
+Enthalpy
+Entropy
+Entropy
+Density
+Density
+Average MW
+Liq Vol 60F
+
+kmol/hr
+
+
+
+
+
+kmol/hr
+kg/hr
+l/min
+C
+bar
+
+
+
+cal/mol
+cal/gm
+cal/sec
+cal/mol-K
+cal/gm-K
+mol/cc
+gm/cc
+
+l/min
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  98.29617
+  146.5574
+       0.0
+  47.78299
+       0.0
+  98.29617
+  .0345456
+  98.33072
+  146.1137
+  47.30547
+       0.0
+  .4778299
+  146.5574
+  47.30516
+  146.5574
+  .4437452
+       0.0
+  .9154281
+  105.0000
+  .5332486
+       0.0
+       0.0
+       0.0
+1.0162E-20
+  .5332486
+  105.5279
+  105.0000
+5.33249E-3
+  .9154281
+  .5279161
+  .9154281
+  .3821795
+7.70721E-6
+  83.46589
+       0.0
+  81.21067
+  105.0000
+7.70721E-6
+6.7127E-13
+7.70721E-6
+  81.21068
+  185.3981
+       0.0
+  .8121067
+  83.46589
+  80.39857
+  83.46589
+  2.255213
+       0.0
+  12.88683
+  5.270000
+  7.693774
+       0.0
+       0.0
+       0.0
+3.4295E-19
+  7.693774
+  12.88683
+  5.270000
+  .0769377
+  12.88683
+  7.616836
+  12.88683
+  5.193058
+  1.703401
+  2.680268
+       0.0
+1.33722E-5
+       0.0
+  1.703401
+  .9755511
+  2.678952
+  2.678966
+1.32435E-5
+       0.0
+1.33722E-7
+  2.680268
+1.32385E-5
+  2.680268
+1.30207E-3
+  99.99958
+  246.5059
+  110.2700
+  137.2207
+  105.0000
+  99.99958
+  1.010097
+  101.0097
+  238.2304
+  351.1184
+  110.2700
+  1.372207
+  246.5059
+  135.8485
+  246.5059
+  8.275498
+  12091.06
+  25176.92
+  4650.856
+  12448.61
+  8201.932
+  12091.06
+  162.4597
+  12253.52
+  24702.13
+  25176.92
+  4650.856
+  124.4861
+  25176.92
+  12324.13
+  25176.92
+  474.7880
+  281.2074
+  3639.620
+  1919.018
+  252.8108
+  155.1460
+  281.2074
+  4.003769
+  285.0730
+  516.5403
+  604.7641
+  44931.66
+  2.528108
+  3639.620
+  250.2827
+1.19961E+5
+  2320.782
+  175.4366
+  380.0000
+  176.3527
+  59.83731
+  25.00000
+  175.4366
+  231.5063
+  175.7667
+  90.00000
+  101.1507
+  25.00000
+  59.83731
+  380.0000
+  59.83731
+  350.2394
+  90.00000
+  1.750000
+  41.00000
+  31.50000
+  1.750000
+  1.000000
+  1.750000
+  1.750000
+  1.750000
+  1.750000
+  41.00000
+  1.000000
+  1.750000
+  41.00000
+  1.750000
+  1.750000
+  1.750000
+       0.0
+  1.000000
+  1.000000
+       0.0
+       0.0
+       0.0
+       0.0
+       0.0
+       0.0
+       0.0
+  1.000000
+       0.0
+  1.000000
+       0.0
+  1.000000
+  1.000000
+  1.000000
+       0.0
+       0.0
+  1.000000
+  1.000000
+  1.000000
+  1.000000
+  1.000000
+  1.000000
+  1.000000
+       0.0
+  1.000000
+       0.0
+  1.000000
+       0.0
+       0.0
+       0.0
+       0.0
+       0.0
+       0.0
+       0.0
+       0.0
+       0.0
+       0.0
+       0.0
+       0.0
+       0.0
+       0.0
+       0.0
+       0.0
+       0.0
+       0.0
+ -1437.396
+  20057.98
+  5781.386
+  3327.853
+  11811.03
+ -1437.396
+ -13676.85
+ -1589.483
+ -290.4653
+  6756.899
+  3382.692
+  3327.853
+  20057.98
+  3327.853
+  20057.98
+ -8719.511
+ -11.88804
+  196.3866
+  137.0744
+  36.68283
+  151.2032
+ -11.88804
+ -85.03614
+ -13.10261
+ -2.801283
+  94.23199
+  80.20233
+  36.68283
+  196.3866
+  36.68283
+  196.3866
+ -151.9800
+ -39927.50
+1.37345E+6
+1.77087E+5
+1.26847E+5
+3.44488E+5
+ -39927.50
+ -3837.484
+ -44598.09
+ -19221.57
+6.59020E+5
+1.03614E+5
+  1268.473
+1.37345E+6
+1.25579E+5
+1.37345E+6
+ -20043.97
+ -110.8639
+ -55.61307
+ -35.06835
+ -80.77704
+ -60.09710
+ -110.8639
+ -163.1218
+ -111.3754
+ -96.65815
+ -58.66938
+ -35.06835
+ -80.77704
+ -55.61307
+ -80.77704
+ -49.98641
+ -53.10758
+ -.9169041
+ -.5445046
+ -.8314570
+ -.8904030
+ -.7693548
+ -.9169041
+ -1.014214
+ -.9181028
+ -.9321831
+ -.8182057
+ -.8314570
+ -.8904030
+ -.5445046
+ -.8904030
+ -.4894143
+ -.9256588
+5.92680E-3
+1.12881E-3
+9.57695E-4
+9.04634E-3
+  .0112797
+5.92680E-3
+4.20478E-3
+5.90549E-3
+7.68673E-3
+9.67646E-3
+4.09029E-5
+9.04634E-3
+1.12881E-3
+9.04634E-3
+3.42480E-5
+5.94304E-5
+  .7166156
+  .1152910
+  .0403926
+  .8206805
+  .8810983
+  .7166156
+  .6762781
+  .7163963
+  .7970379
+  .6938496
+1.72516E-3
+  .8206805
+  .1152910
+  .8206805
+3.49793E-3
+3.40968E-3
+  120.9111
+  102.1352
+  42.17698
+  90.71965
+  78.11364
+  120.9111
+  160.8357
+  121.3103
+  103.6901
+  71.70493
+  42.17698
+  90.71965
+  102.1352
+  90.71965
+  102.1352
+  57.37274
+  233.2137
+  491.2374
+  149.1532
+  242.4338
+  154.8909
+  233.2137
+  3.173146
+  236.3868
+  478.8206
+  544.0537
+  149.1532
+  2.424338
+  491.2374
+  240.0095
+  491.2374
+  12.41678
+# of PFS Objects = 0
+VIEWPORT -13.352770 20.364412 3.320771 -9.504264
+LAYOUT
+TableFormat 1
+Pages 1 1 1 1
+PAGESETUP
+PAPERSIZE 
+PAPERSOURCE 
+ORIENTATION -1
+PRINTPAGENO 1 1
+LEFTMARGIN 0.5"
+RIGHTMARGIN 0.5"
+TOPMARGIN 0.5"
+BOTTOMMARGIN 0.5"
+VISIBILITY 0.030000
+PFDFLAG 255 255
+PFDMODE 0
+SCALE 0.015250
+
+$_SUMMARY_FILE
+ MMSUMMARY
